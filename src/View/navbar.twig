@@ -1,0 +1,45 @@
+<nav class="navbar">
+
+    <input id="navbar-close" type="radio" name="navbar" checked>
+    <input id="navbar-open" type="radio" name="navbar">
+
+    <a class="anima-slipR" href="https://philippebeck.net" accesskey="p" title="See the Author Website">
+        <img src="img/phi.svg" alt="Logo">
+    </a>
+
+    <ul>
+        <li>
+            <a href="{{ url('home') }}" accesskey="h" title="Go back Home">
+                <i class="fas fa-globe-europe fa-lg" aria-hidden="true"></i>
+                <span>Home</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('atlas') }}" accesskey="a" title="Watch the List of Celestial Atlas">
+                <i class="fas fa-atlas fa-lg" aria-hidden="true"></i>
+                <span>Atlas</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('contact') }}" accesskey="c" title="Send a Message to me">
+                <i class="fas fa-comment fa-lg" aria-hidden="true"></i>
+                <span>Contact</span>
+            </a>
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            <a class="color-tw-onto anima-slipL" href="https://www.paypal.me/philippebeck" accesskey="d" rel="noreferrer noopener" target="_blank" title="For Donation !">
+                <i class="fab fa-paypal fa-lg" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+
+    <label for="navbar-close" title="Close the Navigation Menu">
+        <i class="fas fa-angle-double-up fa-lg" aria-hidden="true"></i>
+    </label>
+    <label for="navbar-open" title="Open the Navigation Menu">
+        <i class="fas fa-angle-double-down fa-lg" aria-hidden="true"></i>
+    </label>
+</nav>
