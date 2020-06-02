@@ -1,0 +1,44 @@
+{
+  "name": "philippebeck/celestial-atlas",
+  "version": "0.1.0",
+  "type": "project",
+  "description": "Celestial Atlas from Middle-Age to the 20th Century",
+  "keywords": [
+    "web",
+    "archive",
+    "php",
+    "mvc"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Philippe Beck",
+      "email": "philippe@philippebeck.net",
+      "homepage": "https://philippebeck.net",
+      "role": "Lead Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "require": {
+    "php": "7.3",
+    "philippebeck/pam": "^3.2.2"
+  },
+  "require-dev": {
+    "tracy/tracy": "^2.7.5"
+  },
+  "config": {
+    "platform": {
+      "php": "7.3"
+    }
+  },
+  "support": {
+    "email": "admin@philippebeck.net",
+    "issues": "https://github.com/philippebeck/celestial-atlas/issues",
+    "wiki": "https://github.com/philippebeck/celestial-atlas/wiki",
+    "source": "https://github.com/philippebeck/celestial-atlas"
+  }
+}
