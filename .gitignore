@@ -1,0 +1,5 @@
+.idea/
+config/parameters.php
+public/img/
+public/node_modules/
+vendor/
