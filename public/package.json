@@ -1,0 +1,24 @@
+{
+  "name": "celestial-atlas",
+  "description": "Celestial Atlas from Middle-Age to the 20th Century",
+  "keywords": [
+    "web",
+    "archive",
+    "php",
+    "mvc"
+  ],
+  "license": "MIT",
+  "main": "index.php",
+  "homepage": "https://celestial-atlas.philippebeck.net",
+  "repository": "github:philippebeck/celestial-atlas",
+  "bugs": "https://github.com/philippebeck/celestial-atlas/issues",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "animadio": "2.4.4"
+  },
+  "author": {
+    "name": "Philippe Beck",
+    "email": "philippe@philippebeck.net",
+    "url": "https://philippebeck.net"
+  }
+}
