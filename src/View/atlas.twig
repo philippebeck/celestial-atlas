@@ -1,0 +1,69 @@
+{% extends 'layout.twig' %}
+
+{% block title %}Celestial Atlases{% endblock %}
+
+{% block description %}
+    Here you will find colorful sky maps covering a period of almost a thousand years,
+    as well as Wikipedia links for some atlases and authors.
+{% endblock %}
+
+{% block main %}
+<main>
+    <table class="bg-blue-light bord-out shabox-in-blur anima-slideT">
+        <caption class="font-bold">Clic on a Map Button to see the Atlas Maps !</caption>
+        <thead>
+        <tr>
+            <th>Atlas</th>
+            <th>Map</th>
+            <th>Author</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            {% for atlas in Atlases %}
+            <tr itemscope itemtype="https://schema.org/CreativeWork">
+                <td>
+                    {% if atlas.wiki %}
+                    <a class="button-blue bord-curve cursor-help anima-flipY"
+                       href="https://en.wikipedia.org/wiki/{{ atlas.wiki }}"
+                       title="Atlas's Wiki : {{ atlas.name }} made in {{ atlas.year }}"
+                       itemprop="about">
+                        <span itemprop="name">{{ atlas.name }}</span>
+                    </a>
+                    {% else %}
+                    <span itemprop="name" class="color-navy">{{ atlas.name }}</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a class="btn-sky bord-round shabox-blur cursor-cross anima-flipX"
+                       href="{{ url('atlas!read', {'id': atlas.id}) }}"
+                       title="Watch the Atlas : {{ atlas.name }} made in {{ atlas.year }}"
+                       itemprop="url">
+                        <i class="far fa-map fa-lg" aria-hidden="true"></i>
+                        <div itemprop="copyrightYear">{{ atlas.year }}</div>
+                    </a>
+                </td>
+                <td>
+                    {% if atlas.author_wiki %}
+                    <a class="button-blue bord-curve cursor-help anima-flipY"
+                       href="https://en.wikipedia.org/wiki/{{ atlas.author_wiki }}"
+                       title="Author's Wiki : {{ atlas.author_name }}">
+                        <span itemprop="creator">{{ atlas.author_name }}</span>
+                    </a>
+                    {% else %}
+                    <span itemprop="creator" class="color-navy">{{ atlas.author_name }}</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Atlas</th>
+            <th>Map</th>
+            <th>Author</th>
+        </tr>
+        </tfoot>
+    </table>
+</main>
+{% endblock %}
