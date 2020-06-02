@@ -1,0 +1,31 @@
+{% extends 'layout.twig' %}
+
+{% block title %}Celestial Atlas{% endblock %}
+
+{% block description %}
+    The Atlas Website is dedicated to the History of Astronomy
+    through rare & ancient Celestial Atlases.
+{% endblock %}
+
+{% block main %}
+<main class="container-90tn-80sm-70md-60lg-50wd">
+    <section>
+        <h2 class="color-blue anima-slipB">Welcome !</h2>
+
+        <p>
+            After several years of research,
+            I gathered a collection of celestial atlases in colors
+            which I make available for the lovers of stars & the curious...
+        </p>
+        <p>
+            You will therefore find a table of Atlases with all Maps for each
+            and some links to Wikipedia for Atlases & Authors...
+            (some of them only because the others don't currently exist)
+        </p>
+
+        <a href="{{ url('atlas') }}" accesskey="a" title="Watch the List of Celestial Atlas">
+            <i class="fas fa-atlas fa-7x color-blue color-navy-onto anima-grow" aria-hidden="true"></i>
+        </a>
+    </section>
+</main>
+{% endblock %}
