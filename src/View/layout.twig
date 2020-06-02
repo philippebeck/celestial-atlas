@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ block('title') }}</title>
+
+    <link rel="canonical" href="{% block canonical %}https://celestial-atlas.philippebeck.net{% endblock %}">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+
+    <meta name="description"    content="{{ block('description') }}">
+    <meta name="author"         content="Philippe Beck">
+    <meta name="copyright"      content="MIT">
+
+    <meta property="og:type"        content="website">
+    <meta property="og:title"       content="{{ block('title') }}">
+    <meta property="og:url"         content="{{ block('canonical') }}">
+    <meta property="og:description" content="{{ block('description') }}">
+    <meta property="og:image"       content="{% block image %}https://celestial-atlas.philippebeck.net/img/thumbnails/tn_1693igp3.jpg{% endblock %}">
+
+    <meta name="twitter:card"           content="summary">
+    <meta name="twitter:title"          content="{{ block('title') }}">
+    <meta name="twitter:site"           content="{{ block('canonical') }}">
+    <meta name="twitter:description"    content="{{ block('description') }}">
+    <meta name="twitter:image"          content="{{ block('image') }}">
+    <meta name="twitter:creator"        content="@philippepjbeck">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Text+Me+One%7cCinzel:400,700,900%7cShare+Tech+Mono">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="node_modules/animadio/dist/min/animadio.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-blue-light align-center">
+
+    {{ include('navbar.twig') }}
+
+    <header class="align-center color-navy">
+        {% if (hasAlert()) %}
+            <p id="alert" class="bg-{{ getAlertType() }} color-white">{{ getAlertMessage() }}</p>
+        {% endif %}
+
+        <h1>{{ block('title') }}</h1>
+    </header>
+
+    {% block main %}{% endblock %}
+
+    <script src="js/script.js"></script>
+</body>
+</html>
