@@ -1,0 +1,22 @@
+{% extends 'layout.twig' %}
+
+{% block title %}Constellations{% endblock %}
+
+{% block description %}Gallery of Current Constellations{% endblock %}
+
+{% block main %}
+    <main class="container-90sm-80lg">
+        <ul class="grid-2sm-3lg-4wd">
+            {% for constellation in constellations %}
+                <li>
+                    <a href="img/constellation/{{ constellation.name}}.jpg" title="Clic to Watch">
+                        <figure class="button-navy">
+                            <img src="img/thumbnails/tn_{{ constellation.name }}.jpg" alt="{{ constellation.name }}">
+                            <figcaption>{{ constellation.name|replace({'-': ''})|title }}</figcaption>
+                        </figure>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+{% endblock %}
