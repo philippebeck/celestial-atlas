@@ -9,8 +9,8 @@
 
 {% block main %}
 <main>
-    <table class="bg-blue-light bord-out shabox-in-blur anima-slideT">
-        <caption class="font-bold">Clic on a Map Button to see the Atlas Maps !</caption>
+    <table class="table anima-slideT">
+        <caption>Clic on a Map Button to see the Atlas Maps !</caption>
         <thead>
         <tr>
             <th>Atlas</th>
@@ -24,7 +24,7 @@
             <tr itemscope itemtype="https://schema.org/CreativeWork">
                 <td>
                     {% if atlas.wiki %}
-                    <a class="button-blue bord-curve cursor-help anima-flipY"
+                    <a class="button-blue cursor-help anima-flipY"
                        href="https://en.wikipedia.org/wiki/{{ atlas.wiki }}"
                        title="Atlas's Wiki : {{ atlas.name }} made in {{ atlas.year }}"
                        itemprop="about">
@@ -35,7 +35,7 @@
                     {% endif %}
                 </td>
                 <td>
-                    <a class="btn-sky bord-round shabox-blur cursor-cross anima-flipX"
+                    <a class="btn-navy cursor-cross anima-flipX"
                        href="{{ url('atlas!read', {'id': atlas.id}) }}"
                        title="Watch the Atlas : {{ atlas.name }} made in {{ atlas.year }}"
                        itemprop="url">
@@ -45,7 +45,7 @@
                 </td>
                 <td>
                     {% if atlas.author_wiki %}
-                    <a class="button-blue bord-curve cursor-help anima-flipY"
+                    <a class="button-blue cursor-help anima-flipY"
                        href="https://en.wikipedia.org/wiki/{{ atlas.author_wiki }}"
                        title="Author's Wiki : {{ atlas.author_name }}">
                         <span itemprop="creator">{{ atlas.author_name }}</span>
