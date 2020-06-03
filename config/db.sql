@@ -1,7 +1,14 @@
-DROP DATABASE IF EXISTS `CelestialAtlas`;
-CREATE DATABASE `CelestialAtlas` CHARACTER SET utf8;
+DROP DATABASE IF EXISTS `celestial_atlas`;
+CREATE DATABASE `celestial_atlas` CHARACTER SET utf8;
 
-USE `CelestialAtlas`;
+USE `celestial_atlas`;
+
+CREATE TABLE `Constellation`
+(
+  `id`          SMALLINT        UNSIGNED    PRIMARY KEY     AUTO_INCREMENT,
+  `name`        VARCHAR(20)     NOT NULL    UNIQUE
+)
+ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `Atlas`
 (
@@ -23,6 +30,98 @@ CREATE TABLE `Map`
   CONSTRAINT    `fk_atlas_id`   FOREIGN KEY (`atlas_id`)    REFERENCES  `Atlas`(`id`)
 )
 ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+INSERT INTO `Constellation`
+(`name`)
+VALUES
+('andromeda'),
+('antlia'),
+('apus'),
+('aquarius'),
+('aquila'),
+('ara'),
+('aries'),
+('auriga'),
+('bootes'),
+('caelum'),
+('camelopardalis'),
+('cancer'),
+('canes-venatici'),
+('canis-major'),
+('canis-minor'),
+('capricornus'),
+('carina'),
+('cassiopeia'),
+('centaurus'),
+('cepheus'),
+('cetus'),
+('chamaeleon'),
+('circinus'),
+('columba'),
+('coma-berenices'),
+('corona-australis'),
+('corona-borealis'),
+('corvus'),
+('crater'),
+('crux'),
+('cygnus'),
+('delphinus'),
+('dorado'),
+('draco'),
+('equuleus'),
+('eridanus'),
+('fornax'),
+('gemini'),
+('grus'),
+('hercules'),
+('horologium'),
+('hydra'),
+('hydrus'),
+('indus'),
+('lacerta'),
+('leo'),
+('leo-minor'),
+('lepus'),
+('libra'),
+('lupus'),
+('lynx'),
+('lyra'),
+('mensa'),
+('microscopium'),
+('monoceros'),
+('musca'),
+('norma'),
+('octans'),
+('ophiuchus'),
+('orion'),
+('pavo'),
+('pegasus'),
+('perseus'),
+('phoenix'),
+('pictor'),
+('pisces'),
+('piscis-austrinus'),
+('puppis'),
+('pyxis'),
+('reticulum'),
+('sagitta'),
+('sagittarius'),
+('scorpius'),
+('sculptor'),
+('scutum'),
+('serpens'),
+('sextans'),
+('taurus'),
+('telescopium'),
+('triangulum'),
+('triangulum-australe'),
+('tucana'),
+('ursa-major'),
+('ursa-minor'),
+('vela'),
+('virgo'),
+('volans'),
+('vulpecula');
 
 INSERT INTO `Atlas`
 (`name`,                                        `wiki`,                 `year`, `author_name`,                                      `author_wiki`)
