@@ -1,42 +1,42 @@
 :root {
-    --sans-serif-font-family: 'Text Me One', sans-serif;
-    --serif-font-family: 'Cinzel', serif;
-    --monospace-font-family: 'Share Tech Mono', monospace;
+  --sans-serif-font-family: 'Text Me One', sans-serif;
+  --serif-font-family: 'Cinzel', serif;
+  --monospace-font-family: 'Share Tech Mono', monospace;
 }
 
 body {
-    background: url("../img/bg.jpg") fixed center;
-    background-size: cover;
+  background: url("../img/bg.jpg") fixed center;
+  background-size: cover;
 }
 
 [class*="nav"] {
-    --navbar-background-color: var(--navy);
+  --navbar-background-color: var(--navy);
 }
 
 .table {
-    --table-row-odd-hover-background-color: var(--sky);
+  --table-row-odd-hover-background-color: var(--sky);
 }
 
 @media (min-width: 576px) {
-    .table {
-        --table-width: 80%;
-    }
+  .table {
+    --table-width: 80%;
+  }
 }
 
 @media (min-width: 768px) {
-    .table {
-        --table-width: 70%;
-    }
+  .table {
+    --table-width: 70%;
+  }
 }
 
 @media (min-width: 992px) {
-    .table {
-        --table-width: 60%;
-    }
+  .table {
+    --table-width: 60%;
+  }
 }
 
 @media (min-width: 1200px) {
-    .table {
-        --table-width: 50%;
-    }
+  .table {
+    --table-width: 50%;
+  }
 }

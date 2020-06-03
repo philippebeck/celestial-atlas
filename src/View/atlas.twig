@@ -10,7 +10,7 @@
 {% block main %}
 <main>
     <table class="table anima-slideT">
-        <caption>Clic on a Map Button to see the Atlas Maps !</caption>
+        <caption>Clic on a Map Button to Discover !</caption>
         <thead>
         <tr>
             <th>Atlas</th>
@@ -20,7 +20,7 @@
         </thead>
 
         <tbody>
-            {% for atlas in Atlases %}
+            {% for atlas in atlases %}
             <tr itemscope itemtype="https://schema.org/CreativeWork">
                 <td>
                     {% if atlas.wiki %}

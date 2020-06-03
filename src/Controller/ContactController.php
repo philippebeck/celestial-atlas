@@ -25,9 +25,7 @@ class ContactController extends MainController
             $mail = $this->globals->getPost()->getPostArray();
 
             if (isset($mail['g-recaptcha-response']) && !empty($mail['g-recaptcha-response'])) {
-                $result = $this->checkRecaptcha($mail['g-recaptcha-response']);
-
-                if ($result) {
+                if ($this->checkRecaptcha($mail['g-recaptcha-response'])) {
                     $this->mail->sendMessage($mail);
                     $this->globals->getSession()->createAlert('Message successfully sent to ' . MAIL_USERNAME . ' !', 'green');
 
