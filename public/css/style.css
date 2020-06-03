@@ -4,6 +4,39 @@
     --monospace-font-family: 'Share Tech Mono', monospace;
 }
 
+body {
+    background: url("../img/bg.jpg") fixed center;
+    background-size: cover;
+}
+
 [class*="nav"] {
     --navbar-background-color: var(--navy);
+}
+
+.table {
+    --table-row-odd-hover-background-color: var(--sky);
+}
+
+@media (min-width: 576px) {
+    .table {
+        --table-width: 80%;
+    }
+}
+
+@media (min-width: 768px) {
+    .table {
+        --table-width: 70%;
+    }
+}
+
+@media (min-width: 992px) {
+    .table {
+        --table-width: 60%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .table {
+        --table-width: 50%;
+    }
 }
