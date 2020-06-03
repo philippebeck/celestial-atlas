@@ -1,6 +1,9 @@
 # Celestial Atlas
 
-Celestial Atlas from Middle-Age to the 20th Century !
+Celestial Atlas from Middle-Age to the 19th Century !
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/61f3f0d91e644441b12b6cfa2f7cdafe)](https://www.codacy.com/manual/philippebeck/celestial-atlas?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=philippebeck/celestial-atlas&amp;utm_campaign=Badge_Grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/fe4b3f0abda4a349e31b/maintainability)](https://codeclimate.com/github/philippebeck/celestial-atlas/maintainability)
 
 ---
 
