@@ -22,10 +22,10 @@ class AtlasController extends MainController
      */
     public function defaultMethod()
     {
-        $Atlases = ModelFactory::getModel('Atlas')->listData();
+        $atlases = ModelFactory::getModel('Atlas')->listData();
 
         return $this->render('atlas.twig', [
-            'Atlases' => $Atlases
+            'atlases' => $atlases
         ]);
     }
 
