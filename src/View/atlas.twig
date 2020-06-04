@@ -27,6 +27,7 @@
                     <a class="button-blue cursor-help anima-flipY"
                        href="https://en.wikipedia.org/wiki/{{ atlas.wiki }}"
                        title="Atlas's Wiki : {{ atlas.name }} made in {{ atlas.year }}"
+                       rel="noreferrer noopener" target="_blank"
                        itemprop="about">
                         <span itemprop="name">{{ atlas.name }}</span>
                     </a>
@@ -47,7 +48,8 @@
                     {% if atlas.author_wiki %}
                     <a class="button-blue cursor-help anima-flipY"
                        href="https://en.wikipedia.org/wiki/{{ atlas.author_wiki }}"
-                       title="Author's Wiki : {{ atlas.author_name }}">
+                       title="Author's Wiki : {{ atlas.author_name }}"
+                       rel="noreferrer noopener" target="_blank">
                         <span itemprop="creator">{{ atlas.author_name }}</span>
                     </a>
                     {% else %}

@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>{{ block('title') }}</title>
 
@@ -31,13 +32,14 @@
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="node_modules/animadio/dist/min/animadio.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script data-ad-client="ca-pub-3068718378181393" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 
-<body class="align-center">
+<body class="align-center bg-blue-light">
 
     {{ include('navbar.twig') }}
 
-    <header class="align-center color-navy">
+    <header>
         {% if (hasAlert()) %}
             <p id="alert" class="bg-{{ getAlertType() }} color-white">{{ getAlertMessage() }}</p>
         {% endif %}

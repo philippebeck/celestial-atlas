@@ -5,8 +5,8 @@
 }
 
 body {
-  background: url("../img/bg.jpg") fixed center;
-  background-size: cover;
+  --body-color: var(--navy);
+  margin-bottom: 50px;
 }
 
 [class*="nav"] {
