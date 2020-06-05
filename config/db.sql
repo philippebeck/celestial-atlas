@@ -3,10 +3,21 @@ CREATE DATABASE `celestial_atlas` CHARACTER SET utf8;
 
 USE `celestial_atlas`;
 
+CREATE TABLE User
+(
+    id            SMALLINT      UNSIGNED  PRIMARY KEY AUTO_INCREMENT,
+    name          VARCHAR(50)   NOT NULL,
+    image         VARCHAR(50)   UNIQUE,
+    email         VARCHAR(100)  NOT NULL  UNIQUE,
+    pass          VARCHAR(100)  NOT NULL
+)
+    ENGINE=INNODB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `Constellation`
 (
   `id`          SMALLINT        UNSIGNED    PRIMARY KEY     AUTO_INCREMENT,
-  `name`        VARCHAR(20)     NOT NULL    UNIQUE
+  `name`        VARCHAR(20)     NOT NULL    UNIQUE,
+  `description` TEXT
 )
 ENGINE=INNODB DEFAULT CHARSET=utf8;
 
