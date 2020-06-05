@@ -1,0 +1,46 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Edit an Atlas{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block main %}
+    <main class="align-center">
+        <form class="form" method="post" action={{ url('atlas!update', {'id': atlas.id}) }}>
+            <fieldset>
+                <legend>
+                    <i class="fas fa-atlas fa-5x" aria-hidden="true"></i>
+                </legend>
+                <ul>
+                    <li>
+                        <label for="name">Name</label>
+                        <input id="name" name="name" type="text" maxlength="50" required value="{{ atlas.name }}">
+                    </li>
+                    <li>
+                        <label for="wiki">Wiki</label>
+                        <input id="wiki" name="wiki" type="text" maxlength="30" value="{{ atlas.wiki }}">
+                    </li>
+                    <li>
+                        <label for="year">Year</label>
+                        <input id="year" name="year" type="number" required value="{{ atlas.year}}">
+                    </li>
+                    <li>
+                        <label for="author_name">Author Name</label>
+                        <input id="author_name" name="author_name" type="text" maxlength="50" required value="{{ atlas.author_name }}">
+                    </li>
+                    <li>
+                        <label for="author_wiki">Author Wiki</label>
+                        <input id="author_wiki" name="author_wiki" type="text" maxlength="50" value="{{ certificate.certif_date}}">
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <input type="reset" value="Reset">
+                        <input type="submit" value="Update">
+                    </li>
+                </ul>
+            </fieldset>
+        </form>
+        <a class="btn-black btn-lg" href="{{ url('admin') }}">Quit</a>
+    </main>
+{% endblock %}
