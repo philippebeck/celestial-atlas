@@ -37,7 +37,7 @@
 
 <body class="align-center bg-blue-light">
 
-    {{ include('navbar.twig') }}
+    {{ include('layout/navbar.twig') }}
 
     <header>
         {% if (hasAlert()) %}
@@ -48,6 +48,8 @@
     </header>
 
     {% block main %}{% endblock %}
+
+    {{ include('layout/foot.twig') }}
 
     <script src="js/script.js"></script>
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>

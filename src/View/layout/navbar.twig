@@ -34,17 +34,25 @@
         </li>
     </ul>
 
-    <ul>
-        <li>
-            <a class="color-gray-onto anima-slipL" href="https://github.com/philippebeck/celestial-atlas" accesskey="d" rel="noreferrer noopener" target="_blank" title="To Watch the Project">
-                <i class="fab fa-github fa-lg" aria-hidden="true"></i>
-            </a>
-        </li>
-        <li>
-            <a class="color-tw-onto anima-slipL" href="https://www.paypal.me/philippebeck" accesskey="d" rel="noreferrer noopener" target="_blank" title="For Donation !">
-                <i class="fab fa-paypal fa-lg" aria-hidden="true"></i>
-            </a>
-        </li>
+    <ul class="anima-slipL">
+        {% if (isLogged()) %}
+            <li>
+                <a href="{{ url('admin') }}" accesskey="b" title="{{ getUserVar('name') }} Admin">
+                    <img class="bord-circle" src="img/user/{{ getUserVar('image') }}" alt="{{ getUserVar('name') }} Picture">
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('user!logout') }}" accesskey="l" title="Logout">
+                    <i class="fas fa-sign-out-alt fa-fw" aria-hidden="true"></i>
+                </a>
+            </li>
+        {% else %}
+            <li>
+                <a href="{{ url('user') }}" accesskey="l" title="Login">
+                    <i class="fas fa-sign-in-alt fa-fw" aria-hidden="true"></i>
+                </a>
+            </li>
+        {% endif %}
     </ul>
 
     <label for="navbar-close" title="Close the Navigation Menu">

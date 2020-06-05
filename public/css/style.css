@@ -9,6 +9,10 @@ body {
   margin-bottom: 50px;
 }
 
+main [src*="img/user/"] {
+  width: 200px;
+}
+
 [class*="nav"] {
   --navbar-background-color: var(--navy);
 }

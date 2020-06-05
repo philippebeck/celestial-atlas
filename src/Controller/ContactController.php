@@ -25,6 +25,7 @@ class ContactController extends MainController
             $mail = $this->globals->getPost()->getPostArray();
 
             if (isset($mail['g-recaptcha-response']) && !empty($mail['g-recaptcha-response'])) {
+
                 if ($this->checkRecaptcha($mail['g-recaptcha-response'])) {
                     $this->mail->sendMessage($mail);
                     $this->globals->getSession()->createAlert('Message successfully sent to ' . MAIL_USERNAME . ' !', 'green');
@@ -32,10 +33,12 @@ class ContactController extends MainController
                     $this->redirect('home');
                 }
             }
+
             $this->globals->getSession()->createAlert('Check the reCAPTCHA !', 'red');
 
             $this->redirect('contact');
         }
+
         return $this->render('contact.twig');
     }
 }

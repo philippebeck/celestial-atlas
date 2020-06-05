@@ -1,0 +1,46 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Add a New Atlas{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block main %}
+    <main class="align-center">
+        <form class="form" method="post" action={{ url('atlas!create') }}>
+            <fieldset>
+                <legend>
+                    <i class="fas fa-atlas fa-2x" aria-hidden="true"></i>
+                </legend>
+                <ul>
+                    <li>
+                        <label for="name">Name</label>
+                        <input id="name" name="name" type="text" maxlength="50" required placeholder="Atlas Name">
+                    </li>
+                    <li>
+                        <label for="wiki">Wiki</label>
+                        <input id="wiki" name="wiki" type="text" maxlength="30" placeholder="https://en.wikipedia.org/wiki/">
+                    </li>
+                    <li>
+                        <label for="year">Year</label>
+                        <input id="year" name="year" type="number" max="2000" required placeholder="2000">
+                    </li>
+                    <li>
+                        <label for="author_name">Author Name</label>
+                        <input id="author_name" name="author_name" type="text" maxlength="50" required placeholder="Author Name">
+                    </li>
+                    <li>
+                        <label for="author_wiki">Author Wiki</label>
+                        <input id="author_wiki" name="author_wiki" type="text" maxlength="50" placeholder="https://en.wikipedia.org/wiki/">
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <input type="reset" value="Reset">
+                        <input type="submit" value="Create">
+                    </li>
+                </ul>
+            </fieldset>
+        </form>
+        <a class="btn-black btn-lg" href="{{ url('admin') }}">Quit</a>
+    </main>
+{% endblock %}
