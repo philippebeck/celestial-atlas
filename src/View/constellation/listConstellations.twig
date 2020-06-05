@@ -1,4 +1,4 @@
-{% extends 'layout.twig' %}
+{% extends 'layout/layout.twig' %}
 
 {% block title %}Constellations{% endblock %}
 
@@ -82,11 +82,13 @@
                 <ul class="fluid-2sm-3lg-4wd">
                     {% for constellation in constellations %}
                         <li>
-                            <a href="img/constellation/{{ constellation.name}}.jpg" title="Clic to Watch">
+                            <a href="{{ url('constellation!read', {'id': constellation.id}) }}" title="Clic to Watch">
                                 <figure class="button-navy">
                                     <img src="img/thumbnails/tn_{{ constellation.name }}.jpg"
                                          alt="Chart of {{ constellation.name }}">
-                                    <figcaption>{{ constellation.name|replace({'-': ' '})|title }}</figcaption>
+                                    <figcaption>
+                                        {{ constellation.name|replace({'-': ' '})|title }}
+                                    </figcaption>
                                 </figure>
                             </a>
                         </li>

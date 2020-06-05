@@ -1,4 +1,4 @@
-{% extends 'layout.twig' %}
+{% extends 'layout/layout.twig' %}
 
 {% block title %}Celestial Atlases{% endblock %}
 
@@ -24,7 +24,7 @@
             <tr itemscope itemtype="https://schema.org/CreativeWork">
                 <td>
                     {% if atlas.wiki %}
-                    <a class="button-blue cursor-help anima-flipY"
+                    <a class="button-blue cursor-help anima-openY"
                        href="https://en.wikipedia.org/wiki/{{ atlas.wiki }}"
                        title="Atlas's Wiki : {{ atlas.name }} made in {{ atlas.year }}"
                        rel="noreferrer noopener" target="_blank"
@@ -36,7 +36,7 @@
                     {% endif %}
                 </td>
                 <td>
-                    <a class="btn-navy cursor-cross anima-flipX"
+                    <a class="btn-navy cursor-cross anima-openX"
                        href="{{ url('atlas!read', {'id': atlas.id}) }}"
                        title="Watch the Atlas : {{ atlas.name }} made in {{ atlas.year }}"
                        itemprop="url">
@@ -46,7 +46,7 @@
                 </td>
                 <td>
                     {% if atlas.author_wiki %}
-                    <a class="button-blue cursor-help anima-flipY"
+                    <a class="button-blue cursor-help anima-openY"
                        href="https://en.wikipedia.org/wiki/{{ atlas.author_wiki }}"
                        title="Author's Wiki : {{ atlas.author_name }}"
                        rel="noreferrer noopener" target="_blank">
