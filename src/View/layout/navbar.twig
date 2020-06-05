@@ -15,21 +15,15 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('atlas') }}" accesskey="a" title="Watch the List of Celestial Atlases">
-                <i class="fas fa-atlas fa-lg" aria-hidden="true"></i>
-                <span>Atlas</span>
-            </a>
-        </li>
-        <li>
             <a href="{{ url('constellation') }}" accesskey="c" title="Watch the Current Constellations">
                 <i class="far fa-star fa-lg" aria-hidden="true"></i>
                 <span>Constellation</span>
             </a>
         </li>
         <li>
-            <a href="{{ url('contact') }}" accesskey="m" title="Send a Message to me">
-                <i class="far fa-comment fa-lg" aria-hidden="true"></i>
-                <span>Contact</span>
+            <a href="{{ url('atlas') }}" accesskey="a" title="Watch the List of Celestial Atlases">
+                <i class="fas fa-atlas fa-lg" aria-hidden="true"></i>
+                <span>Atlas</span>
             </a>
         </li>
     </ul>
@@ -37,18 +31,23 @@
     <ul class="anima-slipL">
         {% if (isLogged()) %}
             <li>
-                <a href="{{ url('admin') }}" accesskey="b" title="{{ getUserVar('name') }} Admin">
+                <a href="{{ url('admin') }}" title="{{ getUserVar('name') }} Admin">
                     <img class="bord-circle" src="img/user/{{ getUserVar('image') }}" alt="{{ getUserVar('name') }} Picture">
                 </a>
             </li>
             <li>
-                <a href="{{ url('user!logout') }}" accesskey="l" title="Logout">
+                <a href="{{ url('user!logout') }}" title="Logout">
                     <i class="fas fa-sign-out-alt fa-fw" aria-hidden="true"></i>
                 </a>
             </li>
         {% else %}
             <li>
-                <a href="{{ url('user') }}" accesskey="l" title="Login">
+                <a href="{{ url('contact') }}" title="Contact">
+                    <i class="fas fa-at fa-lg" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('user') }}" title="Login">
                     <i class="fas fa-sign-in-alt fa-fw" aria-hidden="true"></i>
                 </a>
             </li>
