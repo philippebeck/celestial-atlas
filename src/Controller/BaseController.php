@@ -8,7 +8,7 @@ use Pam\Controller\MainController;
  * Class BaseController
  * @package App\Controller
  */
-class BaseController extends MainController // TODO -> add a method to make thumbnails for constellations & maps
+class BaseController extends MainController
 {
     public function checkAdminAccess()
     {
@@ -17,5 +17,16 @@ class BaseController extends MainController // TODO -> add a method to make thum
 
             $this->redirect("user");
         }
+    }
+
+    /**
+     * @param string $img
+     * @param string $src
+     * @param string $dest
+     * @param int $width
+     */
+    public function makeThumbnail(string $img, string $src, string $dest, int $width = 300)
+    {
+        imagejpeg(imagescale(imagecreatefromjpeg($src . $img), $width), $dest . $img);
     }
 }
