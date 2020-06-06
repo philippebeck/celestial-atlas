@@ -8,64 +8,20 @@
 {% endblock %}
 
 {% block main %}
-<main>
-    <table class="table anima-slideT">
-        <caption>Clic on a Map Button to Discover !</caption>
-        <thead>
-        <tr>
-            <th>Atlas</th>
-            <th>Map</th>
-            <th>Author</th>
-        </tr>
-        </thead>
-
-        <tbody>
-            {% for atlas in atlases %}
-            <tr itemscope itemtype="https://schema.org/CreativeWork">
-                <td>
-                    {% if atlas.wiki %}
-                    <a class="button-blue cursor-help anima-openY"
-                       href="https://en.wikipedia.org/wiki/{{ atlas.wiki }}"
-                       title="Atlas's Wiki : {{ atlas.name }} made in {{ atlas.year }}"
-                       rel="noreferrer noopener" target="_blank"
-                       itemprop="about">
-                        <span itemprop="name">{{ atlas.name }}</span>
-                    </a>
-                    {% else %}
-                    <span itemprop="name" class="color-navy">{{ atlas.name }}</span>
-                    {% endif %}
-                </td>
-                <td>
-                    <a class="btn-navy cursor-cross anima-openX"
-                       href="{{ url('atlas!read', {'id': atlas.id}) }}"
-                       title="Watch the Atlas : {{ atlas.name }} made in {{ atlas.year }}"
-                       itemprop="url">
-                        <i class="far fa-map fa-lg" aria-hidden="true"></i>
-                        <div itemprop="copyrightYear">{{ atlas.year }}</div>
-                    </a>
-                </td>
-                <td>
-                    {% if atlas.author_wiki %}
-                    <a class="button-blue cursor-help anima-openY"
-                       href="https://en.wikipedia.org/wiki/{{ atlas.author_wiki }}"
-                       title="Author's Wiki : {{ atlas.author_name }}"
-                       rel="noreferrer noopener" target="_blank">
-                        <span itemprop="creator">{{ atlas.author_name }}</span>
-                    </a>
-                    {% else %}
-                    <span itemprop="creator" class="color-navy">{{ atlas.author_name }}</span>
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-        <tfoot>
-        <tr>
-            <th>Atlas</th>
-            <th>Map</th>
-            <th>Author</th>
-        </tr>
-        </tfoot>
-    </table>
+<main class="container-90sm-80lg">
+<ul class="fluid-2sm-3lg-4wd">
+    {% for map in maps %}
+        <li>
+            <a class="btn-navy cursor-cross"
+               href="{{ url('atlas!read', {'id': map.atlas_id}) }}"
+               title="Watch the Atlas : {{ map.atlas_name }} made in {{ map.year }}">
+                <figure class="button-navy">
+                    <img src="img/thumbnails/tn_{{ map.map_name }}.jpg" alt="Chart of {{ map.atlas_name }}">
+                    <figcaption>{{ map.atlas_name|replace({'-': ' '})|title }}<br>({{ map.year }})</figcaption>
+                </figure>
+            </a>
+        </li>
+    {% endfor %}
+</ul>
 </main>
 {% endblock %}
