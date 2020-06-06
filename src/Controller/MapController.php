@@ -49,7 +49,7 @@ class MapController extends BaseController
         $this->checkAdminAccess();
 
         if (!empty($this->globals->getPost()->getPostArray())) {
-            $this->data['name'] = $this->globals->getFiles()->uploadFile('img/atlas');
+            $this->data['map_name'] = $this->globals->getFiles()->uploadFile('img/atlas');
             $this->getMapPost();
 
             ModelFactory::getModel('Project')->createData($this->data);
@@ -74,7 +74,7 @@ class MapController extends BaseController
         if (!empty($this->globals->getPost()->getPostArray())) {
 
             if (!empty($this->globals->getFiles()->getFileVar('name'))) {
-                $this->data['name'] = $this->globals->getFiles()->uploadFile('img/atlas');
+                $this->data['map_name'] = $this->globals->getFiles()->uploadFile('img/atlas');
             }
 
             $this->getMapPost();
