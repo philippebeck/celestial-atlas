@@ -93,12 +93,18 @@ class AtlasController extends BaseController
         return $this->render("atlas/updateAtlas.twig", ["atlas" => $atlas]);
     }
 
-    public function deleteMethod() // TODO -> add delete allMaps for this Atlas
+    public function deleteMethod()
     {
         $this->checkAdminAccess();
 
-        ModelFactory::getModel('Atlas')->deleteData($this->globals->getGet()->getGetVar('id'));
-        $this->globals->getSession()->createAlert('Atlas permanently deleted !', 'red');
+        $maps = ModelFactory::getModel("Map")->listData($this->globals->getGet()->getGetVar("id"), "atlas_id");
+
+        foreach ($maps as $map) {
+            ModelFactory::getModel("Map")->deleteData($map["id"]);
+        }
+
+        ModelFactory::getModel("Atlas")->deleteData($this->globals->getGet()->getGetVar("id"));
+        $this->globals->getSession()->createAlert("Atlas permanently deleted !", "red");
 
         $this->redirect("admin");
 
