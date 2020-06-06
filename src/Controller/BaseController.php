@@ -13,9 +13,9 @@ class BaseController extends MainController // TODO -> add a method to make thum
     public function checkAdminAccess()
     {
         if ($this->globals->getSession()->islogged() === false) {
-            $this->globals->getSession()->createAlert('You must be logged in to access the administration', 'black');
+            $this->globals->getSession()->createAlert("You must be logged in to access the administration", "black");
 
-            $this->redirect('user');
+            $this->redirect("user");
         }
     }
 }
