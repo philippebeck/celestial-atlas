@@ -52,7 +52,10 @@ class ConstellationController extends BaseController
         if (!empty($this->globals->getPost()->getPostArray())) {
 
             if (!empty($this->globals->getFiles()->getFileVar("name"))) {
-                $data['name'] = $this->globals->getFiles()->uploadFile('img/constellation');
+                $img = $this->globals->getFiles()->uploadFile("img/constellation");
+
+                $this->makeThumbnail($img, "img/constellation/", "img/thumbnails/tn_");
+                $data["name"] = trim($img, ".jpg");
             }
 
             $data["description"] = $this->globals->getPost()->getPostVar("description");

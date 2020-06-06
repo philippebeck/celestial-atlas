@@ -79,6 +79,7 @@ class UserController extends BaseController
 
         if (!empty($this->globals->getPost()->getPostArray())) {
             $user["image"] = $this->globals->getFiles()->uploadFile("img/user");
+            $this->makeThumbnail($user["image"], "img/user/", "img/user/", 150);
 
             $user["name"]   = $this->globals->getPost()->getPostVar("name");
             $user["email"]  = $this->globals->getPost()->getPostVar("email");
@@ -133,6 +134,7 @@ class UserController extends BaseController
 
             if (!empty($this->globals->getFiles()->getFileVar("name"))) {
                 $this->user["image"] = $this->globals->getFiles()->uploadFile("img/user");
+                $this->makeThumbnail($this->user["image"], "img/user/", "img/user/", 150);
             }
 
             if (!empty($this->globals->getPost()->getPostVar("old-pass"))) {
