@@ -6,13 +6,13 @@
 
 {% block main %}
 <main class="container-90sm-80lg">
-    {% if atlas.wiki %}
+    {% if atlas.atlas_wiki %}
     <a class="button-green cursor-help"
-       href="https://en.wikipedia.org/wiki/{{ atlas.wiki }}"
-       title="Atlas's Wiki : {{ atlas.name }} made in {{ atlas.year }}"
+       href="https://en.wikipedia.org/wiki/{{ atlas.atlas_wiki }}"
+       title="Atlas's Wiki : {{ atlas.atlas_name }} made in {{ atlas.year }}"
        rel="noreferrer noopener" target="_blank">
         <i class="fas fa-atlas fa-lg" aria-hidden="true"></i>
-        {{ atlas.name }}
+        {{ atlas.atlas_name }}
     </a>
     {% endif %}
 
@@ -29,9 +29,9 @@
     <ul class="grid-2sm-3lg-4wd" itemscope itemtype="https://schema.org/CreativeWork">
         {% for key, map in maps %}
         <li>
-            <a href="img/atlas/{{ map.name}}.jpg" title="Clic to Watch" itemprop="image">
+            <a href="img/atlas/{{ map.map_name}}.jpg" title="Clic to Watch" itemprop="image">
                 <figure class="button-navy">
-                    <img src="img/thumbnails/tn_{{ map.name }}.jpg" alt="{{ atlas.name }} board n°{{ key + 1 }}" itemprop="thumbnailUrl">
+                    <img src="img/thumbnails/tn_{{ map.map_name }}.jpg" alt="{{ atlas.atlas_name }} board n°{{ key + 1 }}" itemprop="thumbnailUrl">
                     <figcaption itemprop="description">{{ map.description }}</figcaption>
                 </figure>
             </a>

@@ -23,16 +23,16 @@ class AdminController extends BaseController
     {
         $this->checkAdminAccess();
 
-        $constellations = ModelFactory::getModel('Constellation')->listData();
-        $atlases        = ModelFactory::getModel('Atlas')->listData();
-        $maps           = ModelFactory::getModel('Map')->listData();
-        $users          = ModelFactory::getModel('User')->listData();
+        $constellations = ModelFactory::getModel("Constellation")->listData();
+        $atlases        = ModelFactory::getModel("Atlas")->listData();
+        $maps           = ModelFactory::getModel("Map")->listData();
+        $users          = ModelFactory::getModel("User")->listData();
 
-        return $this->render('admin/admin.twig', [
-            'constellations'    => $constellations,
-            'atlases'           => $atlases,
-            'maps'              => $maps,
-            'users'             => $users
+        return $this->render("admin/admin.twig", [
+            "constellations"    => $constellations,
+            "atlases"           => $atlases,
+            "maps"              => $maps,
+            "users"             => $users
         ]);
     }
 }

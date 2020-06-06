@@ -15,15 +15,15 @@
         {% for atlas in atlases %}
             <tr>
                 <td>
-                    {% if atlas.wiki %}
+                    {% if atlas.atlas_wiki %}
                         <a class="button-green"
-                           href="https://en.wikipedia.org/wiki/{{ atlas.wiki }}"
+                           href="https://en.wikipedia.org/wiki/{{ atlas.atlas_wiki }}"
                            rel="noreferrer noopener" target="_blank"
                            title="Wikipedia Atlas Page">
-                            {{ atlas.name }}
+                            {{ atlas.atlas_name }}
                         </a>
                     {% else %}
-                        {{ atlas.name }}
+                        {{ atlas.atlas_name }}
                     {% endif %}
                 </td>
                 <td>

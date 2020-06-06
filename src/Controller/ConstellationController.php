@@ -21,9 +21,9 @@ class ConstellationController extends BaseController
      */
     public function defaultMethod()
     {
-        $constellations = ModelFactory::getModel('Constellation')->listData();
+        $constellations = ModelFactory::getModel("Constellation")->listData();
 
-        return $this->render('constellation/listConstellations.twig', ['constellations' => $constellations]);
+        return $this->render("constellation/listConstellations.twig", ["constellations" => $constellations]);
     }
 
     /**
@@ -34,9 +34,9 @@ class ConstellationController extends BaseController
      */
     public function readMethod()
     {
-        $constellation = ModelFactory::getModel('Constellation')->readData($this->globals->getGet()->getGetVar('id'));
+        $constellation = ModelFactory::getModel("Constellation")->readData($this->globals->getGet()->getGetVar("id"));
 
-        return $this->render('constellation/constellation.twig', ['constellation' => $constellation]);
+        return $this->render("constellation/constellation.twig", ["constellation" => $constellation]);
     }
 
     /**
@@ -51,20 +51,23 @@ class ConstellationController extends BaseController
 
         if (!empty($this->globals->getPost()->getPostArray())) {
 
-            if (!empty($this->globals->getFiles()->getFileVar('name'))) {
-                $data['name'] = $this->globals->getFiles()->uploadFile('img/constellation');
+            if (!empty($this->globals->getFiles()->getFileVar("name"))) {
+                $img = $this->globals->getFiles()->uploadFile("img/constellation");
+
+                $this->makeThumbnail($img, "img/constellation/", "img/thumbnails/tn_");
+                $data["name"] = trim($img, ".jpg");
             }
 
-            $data['description'] = $this->globals->getPost()->getPostVar('description');
+            $data["description"] = $this->globals->getPost()->getPostVar("description");
 
-            ModelFactory::getModel('Constellation')->updateData($this->globals->getGet()->getGetVar('id'), $data);
-            $this->globals->getSession()->createAlert('Successful modification of the selected constellation !', 'blue');
+            ModelFactory::getModel("Constellation")->updateData($this->globals->getGet()->getGetVar("id"), $data);
+            $this->globals->getSession()->createAlert("Successful modification of the selected constellation !", "blue");
 
-            $this->redirect('admin');
+            $this->redirect("admin");
         }
 
-        $constellation = ModelFactory::getModel('Constellation')->readData($this->globals->getGet()->getGetVar('id'));
+        $constellation = ModelFactory::getModel("Constellation")->readData($this->globals->getGet()->getGetVar("id"));
 
-        return $this->render('constellation/updateConstellation.twig', ['constellation' => $constellation]);
+        return $this->render("constellation/updateConstellation.twig", ["constellation" => $constellation]);
     }
 }

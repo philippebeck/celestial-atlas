@@ -21,6 +21,6 @@ class HomeController extends MainController
      */
     public function defaultMethod()
     {
-        return $this->render('home.twig');
+        return $this->render("home.twig");
     }
 }

@@ -21,9 +21,19 @@ class AtlasController extends BaseController
      */
     public function defaultMethod()
     {
-        $atlases = ModelFactory::getModel('Atlas')->listData();
+        $maps = ModelFactory::getModel("Atlas")->listAtlasMaps();
 
-        return $this->render('atlas/atlas.twig', ['atlases' => $atlases]);
+        $firstMaps = [];
+
+        foreach ($maps as $map) {
+            if (strstr($map["map_name"], "04")) {
+                $firstMaps[] = $map;
+            }
+        }
+
+        return $this->render("atlas/atlas.twig", [
+            "maps" => $firstMaps
+        ]);
     }
 
     /**
@@ -38,13 +48,13 @@ class AtlasController extends BaseController
 
         if (!empty($this->globals->getPost()->getPostArray())) {
 
-            ModelFactory::getModel('Atlas')->createData($this->globals->getPost()->getPostArray());
-            $this->globals->getSession()->createAlert('New atlas successfully created !', 'green');
+            ModelFactory::getModel("Atlas")->createData($this->globals->getPost()->getPostArray());
+            $this->globals->getSession()->createAlert("New atlas successfully created !", "green");
 
-            $this->redirect('map!create');
+            $this->redirect("map!create");
         }
 
-        return $this->render('atlas/createAtlas.twig');
+        return $this->render("atlas/createAtlas.twig");
     }
 
     /**
@@ -55,10 +65,10 @@ class AtlasController extends BaseController
      */
     public function readMethod()
     {
-        $atlas  = ModelFactory::getModel('Atlas')->readData($this->globals->getGet()->getGetVar('id'));
-        $maps   = ModelFactory::getModel('Map')->listData($this->globals->getGet()->getGetVar('id'), 'atlas_id');
+        $atlas  = ModelFactory::getModel("Atlas")->readData($this->globals->getGet()->getGetVar("id"));
+        $maps   = ModelFactory::getModel("Map")->listData($this->globals->getGet()->getGetVar("id"), "atlas_id");
 
-        return $this->render('atlas/atlasMaps.twig', ['atlas' => $atlas, 'maps'  => $maps]);
+        return $this->render("atlas/atlasMaps.twig", ["atlas" => $atlas, "maps"  => $maps]);
     }
 
     /**
@@ -72,25 +82,31 @@ class AtlasController extends BaseController
         $this->checkAdminAccess();
 
         if (!empty($this->globals->getPost()->getPostArray())) {
-            ModelFactory::getModel('Atlas')->updateData($this->globals->getGet()->getGetVar('id'), $this->globals->getPost()->getPostArray());
-            $this->globals->getSession()->createAlert('Successful modification of the selected atlas !', 'blue');
+            ModelFactory::getModel("Atlas")->updateData($this->globals->getGet()->getGetVar("id"), $this->globals->getPost()->getPostArray());
+            $this->globals->getSession()->createAlert("Successful modification of the selected atlas !", "blue");
 
-            $this->redirect('admin');
+            $this->redirect("admin");
         }
 
-        $atlas = ModelFactory::getModel('Atlas')->readData($this->globals->getGet()->getGetVar('id'));
+        $atlas = ModelFactory::getModel("Atlas")->readData($this->globals->getGet()->getGetVar("id"));
 
-        return $this->render('atlas/updateAtlas.twig', ['atlas' => $atlas]);
+        return $this->render("atlas/updateAtlas.twig", ["atlas" => $atlas]);
     }
 
-    public function deleteMethod() // TODO -> add delete allMaps for this Atlas
+    public function deleteMethod()
     {
         $this->checkAdminAccess();
 
-        ModelFactory::getModel('Atlas')->deleteData($this->globals->getGet()->getGetVar('id'));
-        $this->globals->getSession()->createAlert('Atlas permanently deleted !', 'red');
+        $maps = ModelFactory::getModel("Map")->listData($this->globals->getGet()->getGetVar("id"), "atlas_id");
 
-        $this->redirect('admin');
+        foreach ($maps as $map) {
+            ModelFactory::getModel("Map")->deleteData($map["id"]);
+        }
+
+        ModelFactory::getModel("Atlas")->deleteData($this->globals->getGet()->getGetVar("id"));
+        $this->globals->getSession()->createAlert("Atlas permanently deleted !", "red");
+
+        $this->redirect("admin");
 
     }
 }
