@@ -21,9 +21,19 @@ class AtlasController extends BaseController
      */
     public function defaultMethod()
     {
-        $atlases = ModelFactory::getModel('Atlas')->listData();
+        $maps = ModelFactory::getModel('Atlas')->listAtlasMaps();
 
-        return $this->render('atlas/atlas.twig', ['atlases' => $atlases]);
+        $firstMaps = [];
+
+        foreach ($maps as $map) {
+            if (strstr($map['map_name'], '04')) {
+                $firstMaps[] = $map;
+            }
+        }
+
+        return $this->render('atlas/atlas.twig', [
+            'maps' => $firstMaps
+        ]);
     }
 
     /**
