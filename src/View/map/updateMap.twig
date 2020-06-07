@@ -7,7 +7,7 @@
 {% block main %}
     <main class="align-center">
         <form class="form" method="post" action={{ url('map!update', {'id': map.id}) }} enctype="multipart/form-data">
-            <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
+            <input type="hidden" name="MAX_FILE_SIZE" value="50000000">
             <fieldset>
                 <legend>
                     <img class="bord-green"
@@ -16,7 +16,7 @@
                 </legend>
                 <ul>
                     <li>
-                        <label for="file">Picture</label>
+                        <label for="file">Picture (max 50Mo)</label>
                         <input name="file" type="file" accept=".jpg">
                     </li>
                     <li>

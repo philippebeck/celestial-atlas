@@ -7,7 +7,7 @@
 {% block main %}
     <main class="align-center">
         <form class="form" method="post" action={{ url('user!create') }} enctype="multipart/form-data">
-            <input name="MAX_FILE_SIZE" type="hidden" value="10000000" />
+            <input name="MAX_FILE_SIZE" type="hidden" value="5000000">
             <fieldset>
                 <legend>
                     <i class="far fa-user fa-2x" aria-hidden="true"></i>
@@ -18,7 +18,7 @@
                         <input id="name" name="name" type="text" maxlength="50" required placeholder="Type your Name">
                     </li>
                     <li>
-                        <label for="file">Image</label>
+                        <label for="file">Photo (max 5Mo)</label>
                         <input name="file" type="file" accept=".jpg, .jpeg, .png, .svg, .gif" required>
                     </li>
                     <li>
