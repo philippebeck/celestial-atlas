@@ -72,17 +72,19 @@ class MapController extends BaseController
         $this->checkAdminAccess();
 
         if (!empty($this->globals->getPost()->getPostArray())) {
-            $img = $this->globals->getFiles()->uploadFile("img/atlas");
 
-            $this->makeThumbnail($img, "img/atlas/", "img/thumbnails/tn_");
-            $this->data["map_name"] = trim($img, ".jpg");
+            if (!empty($this->globals->getFiles()->getFileVar("name"))) {
+                $img = $this->globals->getFiles()->uploadFile("img/atlas");
+                $this->makeThumbnail($img, "img/atlas/", "img/thumbnails/tn_");
+            }
 
             $this->getMapPost();
+            $this->setMapName();
 
-            ModelFactory::getModel("Project")->createData($this->data);
+            ModelFactory::getModel("Map")->createData($this->data);
             $this->globals->getSession()->createAlert("New map created successfully !", "green");
 
-            $this->redirect("map!create");
+            $this->redirect("admin");
         }
 
         $atlases = ModelFactory::getModel("Atlas")->listData();
@@ -104,9 +106,7 @@ class MapController extends BaseController
 
             if (!empty($this->globals->getFiles()->getFileVar("name"))) {
                 $img = $this->globals->getFiles()->uploadFile("img/atlas");
-
                 $this->makeThumbnail($img, "img/atlas/", "img/thumbnails/tn_");
-                $this->data["map_name"] = trim($img, ".jpg");
             }
 
             $this->getMapPost();
