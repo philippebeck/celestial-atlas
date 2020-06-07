@@ -9,8 +9,8 @@
 
 {% block main %}
 <main class="container-90sm-80lg">
-<ul class="fluid-2sm-3lg-4wd">
-    {% for map in maps %}
+    <ul class="fluid-2sm-3lg-4wd">
+    {% for map in demoMaps %}
         <li>
             <a class="btn-navy cursor-cross"
                href="{{ url('atlas!read', {'id': map.atlas_id}) }}"
@@ -22,6 +22,6 @@
             </a>
         </li>
     {% endfor %}
-</ul>
+    </ul>
 </main>
 {% endblock %}

@@ -26,12 +26,17 @@
         </a>
     {% endif %}
 
-    <ul class="grid-2sm-3lg-4wd" itemscope itemtype="https://schema.org/CreativeWork">
-        {% for key, map in maps %}
+    <ul class="grid-2sm-3lg-4wd pad-top-lg" itemscope itemtype="https://schema.org/CreativeWork">
+        {% for key, map in atlasMaps %}
         <li>
-            <a href="img/atlas/{{ map.map_name}}.jpg" title="Clic to Watch" itemprop="image">
+            <a class="cursor-cross"
+               href="img/atlas/{{ map.map_name}}.jpg"
+               title="Clic to Watch {{ map.description}} in Full Page"
+               itemprop="image">
                 <figure class="button-navy">
-                    <img src="img/thumbnails/tn_{{ map.map_name }}.jpg" alt="{{ atlas.atlas_name }} board n°{{ key + 1 }}" itemprop="thumbnailUrl">
+                    <img src="img/thumbnails/tn_{{ map.map_name }}.jpg"
+                         alt="{{ atlas.atlas_name }} board n°{{ key + 1 }}"
+                         itemprop="thumbnailUrl">
                     <figcaption itemprop="description">{{ map.description }}</figcaption>
                 </figure>
             </a>

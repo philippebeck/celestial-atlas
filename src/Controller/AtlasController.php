@@ -21,18 +21,17 @@ class AtlasController extends BaseController
      */
     public function defaultMethod()
     {
-        $maps = ModelFactory::getModel("Atlas")->listAtlasMaps();
-
-        $firstMaps = [];
+        $maps       = ModelFactory::getModel("Atlas")->listAtlasMaps();
+        $demoMaps   = [];
 
         foreach ($maps as $map) {
             if (strstr($map["map_name"], "04")) {
-                $firstMaps[] = $map;
+                $demoMaps[] = $map;
             }
         }
 
         return $this->render("atlas/atlas.twig", [
-            "maps" => $firstMaps
+            "demoMaps" => $demoMaps
         ]);
     }
 
@@ -69,10 +68,10 @@ class AtlasController extends BaseController
      */
     public function readMethod()
     {
-        $atlas  = ModelFactory::getModel("Atlas")->readData($this->globals->getGet()->getGetVar("id"));
-        $maps   = ModelFactory::getModel("Map")->listData($this->globals->getGet()->getGetVar("id"), "atlas_id");
+        $atlas      = ModelFactory::getModel("Atlas")->readData($this->globals->getGet()->getGetVar("id"));
+        $atlasMaps  = ModelFactory::getModel("Map")->listData($this->globals->getGet()->getGetVar("id"), "atlas_id");
 
-        return $this->render("atlas/atlasMaps.twig", ["atlas" => $atlas, "maps"  => $maps]);
+        return $this->render("atlas/atlasMaps.twig", ["atlas" => $atlas, "atlasMaps"  => $atlasMaps]);
     }
 
     /**
