@@ -38,6 +38,29 @@ class MapController extends BaseController
         $this->data["atlas_id"]     = $this->globals->getPost()->getPostVar("atlas_id");
     }
 
+    private function setMapName()
+    {
+        $maps       = ModelFactory::getModel("Atlas")->listAtlasMaps();
+        $mapCount   = 0;
+
+        foreach ($maps as $map) {
+            if ($map["atlas_id"] === $this->globals->getPost()->getPostVar("atlas_id")) {
+
+                preg_match_all('/[A-Z]/', $map["author_name"], $authorInitials);
+                $authorInitials = strtolower(implode($authorInitials[0]));
+
+                if (in_array($map["atlas_name"], $map)) {
+                    $mapCount++;
+                }
+
+                $this->data["map_name"] =
+                    $map["published_year"] .
+                    $authorInitials .
+                    ($mapCount + 1);
+            }
+        }
+    }
+
     /**
      * @return string
      * @throws LoaderError
