@@ -38,6 +38,29 @@ class MapController extends BaseController
         $this->data["atlas_id"]     = $this->globals->getPost()->getPostVar("atlas_id");
     }
 
+    private function setMapName()
+    {
+        $maps       = ModelFactory::getModel("Atlas")->listAtlasMaps();
+        $mapCount   = 0;
+
+        foreach ($maps as $map) {
+            if ($map["atlas_id"] === $this->globals->getPost()->getPostVar("atlas_id")) {
+
+                preg_match_all('/[A-Z]/', $map["author_name"], $authorInitials);
+                $authorInitials = strtolower(implode($authorInitials[0]));
+
+                if (in_array($map["atlas_name"], $map)) {
+                    $mapCount++;
+                }
+
+                $this->data["map_name"] =
+                    $map["published_year"] .
+                    $authorInitials .
+                    ($mapCount + 1);
+            }
+        }
+    }
+
     /**
      * @return string
      * @throws LoaderError
@@ -49,20 +72,24 @@ class MapController extends BaseController
         $this->checkAdminAccess();
 
         if (!empty($this->globals->getPost()->getPostArray())) {
-            $img = $this->globals->getFiles()->uploadFile("img/atlas");
 
-            $this->makeThumbnail($img, "img/atlas/", "img/thumbnails/tn_");
-            $this->data["map_name"] = trim($img, ".jpg");
+            if (!empty($this->globals->getFiles()->getFileVar("name"))) {
+                $img = $this->globals->getFiles()->uploadFile("img/atlas");
+                $this->makeThumbnail($img, "img/atlas/", "img/thumbnails/tn_");
+            }
 
             $this->getMapPost();
+            $this->setMapName();
 
-            ModelFactory::getModel("Project")->createData($this->data);
+            ModelFactory::getModel("Map")->createData($this->data);
             $this->globals->getSession()->createAlert("New map created successfully !", "green");
 
-            $this->redirect("map!create");
+            $this->redirect("admin");
         }
 
-        return $this->render("map/createMap.twig");
+        $atlases = ModelFactory::getModel("Atlas")->listData();
+
+        return $this->render("map/createMap.twig", ["atlases" => $atlases]);
     }
 
     /**
@@ -79,9 +106,7 @@ class MapController extends BaseController
 
             if (!empty($this->globals->getFiles()->getFileVar("name"))) {
                 $img = $this->globals->getFiles()->uploadFile("img/atlas");
-
                 $this->makeThumbnail($img, "img/atlas/", "img/thumbnails/tn_");
-                $this->data["map_name"] = trim($img, ".jpg");
             }
 
             $this->getMapPost();
@@ -92,9 +117,13 @@ class MapController extends BaseController
             $this->redirect("admin");
         }
 
-        $map = ModelFactory::getModel("Map")->readData($this->globals->getGet()->getGetVar("id"));
+        $atlases    = ModelFactory::getModel("Atlas")->listData();
+        $map        = ModelFactory::getModel("Map")->readData($this->globals->getGet()->getGetVar("id"));
 
-        return $this->render("map/updateMap.twig", ["map" => $map]);
+        return $this->render("map/updateMap.twig", [
+            "atlases"   => $atlases,
+            "map"       => $map
+            ]);
     }
 
     public function deleteMethod()

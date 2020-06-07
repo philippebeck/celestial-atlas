@@ -23,12 +23,12 @@ ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `Atlas`
 (
-  `id`          TINYINT         UNSIGNED    PRIMARY KEY AUTO_INCREMENT,
-  `atlas_name`  VARCHAR(50)     NOT NULL,
-  `atlas_wiki`  VARCHAR(30),
-  `year`        VARCHAR(4)      NOT NULL,
-  `author_name` VARCHAR(50)     NOT NULL,
-  `author_wiki` VARCHAR(50)
+  `id`              TINYINT         UNSIGNED    PRIMARY KEY AUTO_INCREMENT,
+  `atlas_name`      VARCHAR(50)     NOT NULL,
+  `atlas_wiki`      VARCHAR(30),
+  `published_year`  SMALLINT(4)     ZEROFILL    NOT NULL,
+  `author_name`     VARCHAR(50)     NOT NULL,
+  `author_wiki`     VARCHAR(50)
 )
 ENGINE=INNODB DEFAULT CHARSET=utf8;
 
@@ -136,29 +136,29 @@ Arcturus is a Greek word meaning bear keeper. Arcturus is sometimes represented 
 ('vulpecula',           '');
 
 INSERT INTO `Atlas`
-(`atlas_name`,                                  `atlas_wiki`,           `year`, `author_name`,                                      `author_wiki`)
+(`atlas_name`,                                  `atlas_wiki`,               `published_year`,   `author_name`,                                      `author_wiki`)
 VALUES
-('Kitab Suwar al Kawakib',                      'Book_of_Fixed_Stars',  '964',  'Abd al-Rahman al-Sufi',                            'Abd_al-Rahman_al-Sufi'),
-('Kitab Suwar al Kawakib',                      'Book_of_Fixed_Stars',  '1417', 'Abd al-Rahman al-Sufi',                            'Abd_al-Rahman_al-Sufi'),
-('Souwar al-Kawakib al-Thabita',                'Zij-i_Sultani',        '1436', 'Zahir al-Din Ulugh Beg Kurakan',                   'Ulugh_Beg'),
-('Uranometria',                                 'Uranometria',          '1603', 'Johann Bayer',                                     'Johann_Bayer'),
-('Harmonia Macrocosmica',                       'Harmonia_Macrocosmica','1660', 'Andreas Cellarius',                                'Andreas_Cellarius'),
-('Uranographia',                                '',                     '1690', 'Johannes Hevelius',                                'Johannes_Hevelius'),
-('Globi Coelestis',                             '',                     '1693', 'Ignace-Gaston Pardies',                            'Ignace-Gaston_Pardies'),
-('Mercurii Philisophici Firmamentum Firmianum', '',                     '1730', 'Thomas Corbinianus',                               ''),
-('Atlas Coelestis',                             '',                     '1742', 'Johann Gabriel Doppelmayr',                        'Johann_Gabriel_Doppelmayr'),
-('Atlas Coelestis',                             'Atlas_Coelestis',      '1753', 'John Flamsteed',                                   'John_Flamsteed'),
-('Atlas Céleste',                               '',                     '1776', 'Jean Nicolas Fortin',                              'Jean_Nicolas_Fortin'),
-('Vorstellung der Gestirne auf XXXIV Tafeln',   '',                     '1805', 'Johann Elert Bode',                                'Johann_Elert_Bode'),
-('A Celestial Atlas',                           'A_Celestial_Atlas',    '1822', 'Alexander Jamieson',                               'Alexander_Jamieson'),
-('Astronomical Recreations',                    '',                     '1824', 'Jacob Green',                                      ''),
-('Urania Mirror',                               'Urania''s_Mirror',     '1824', 'Richard Rouse Bloxam',                             ''),
-('The Geography of the Heavens',                '',                     '1835', 'Elijah Hinsdale Burritt',                          ''),
-('The Stars',                                   '',                     '1844', 'William Rutter Dawes',                             'William_Rutter_Dawes'),
-('Smith Illustrated Astronomy',                 '',                     '1850', 'Asa Smith',                                        ''),
-('Astronomischen Bilderatlas',                  '',                     '1850', 'Ludwig Preyssinger',                               ''),
-('The Stars',                                   '',                     '1865', 'Society for the Diffusion of Useful Knowledge',    'Society_for_the_Diffusion_of_Useful_Knowledge'),
-('Atlas of Astronomy',                          '',                     '1869', 'Alexander Keith Johnston',                         'Alexander_Keith_Johnston_(1844–1879)');
+('Kitab Suwar al Kawakib',                      'Book_of_Fixed_Stars',      964,                'Abd al-Rahman al-Sufi',                            'Abd_al-Rahman_al-Sufi'),
+('Kitab Suwar al Kawakib',                      'Book_of_Fixed_Stars',      1417,               'Abd al-Rahman al-Sufi',                            'Abd_al-Rahman_al-Sufi'),
+('Souwar al-Kawakib al-Thabita',                'Zij-i_Sultani',            1436,               'Zahir al-Din Ulugh Beg Kurakan',                   'Ulugh_Beg'),
+('Uranometria',                                 'Uranometria',              1603,               'Johann Bayer',                                     'Johann_Bayer'),
+('Harmonia Macrocosmica',                       'Harmonia_Macrocosmica',    1660,               'Andreas Cellarius',                                'Andreas_Cellarius'),
+('Uranographia',                                '',                         1690,               'Johannes Hevelius',                                'Johannes_Hevelius'),
+('Globi Coelestis',                             '',                         1693,               'Ignace-Gaston Pardies',                            'Ignace-Gaston_Pardies'),
+('Mercurii Philisophici Firmamentum Firmianum', '',                         1730,               'Thomas Corbinianus',                               ''),
+('Atlas Coelestis',                             '',                         1742,               'Johann Gabriel Doppelmayr',                        'Johann_Gabriel_Doppelmayr'),
+('Atlas Coelestis',                             'Atlas_Coelestis',          1753,               'John Flamsteed',                                   'John_Flamsteed'),
+('Atlas Céleste',                               '',                         1776,               'Jean Nicolas Fortin',                              'Jean_Nicolas_Fortin'),
+('Vorstellung der Gestirne auf XXXIV Tafeln',   '',                         1805,               'Johann Elert Bode',                                'Johann_Elert_Bode'),
+('A Celestial Atlas',                           'A_Celestial_Atlas',        1822,               'Alexander Jamieson',                               'Alexander_Jamieson'),
+('Astronomical Recreations',                    '',                         1824,               'Jacob Green',                                      ''),
+('Urania Mirror',                               'Urania''s_Mirror',         1824,               'Richard Rouse Bloxam',                             ''),
+('The Geography of the Heavens',                '',                         1835,               'Elijah Hinsdale Burritt',                          ''),
+('The Stars',                                   '',                         1844,               'William Rutter Dawes',                             'William_Rutter_Dawes'),
+('Smith Illustrated Astronomy',                 '',                         1850,               'Asa Smith',                                        ''),
+('Astronomischen Bilderatlas',                  '',                         1850,               'Ludwig Preyssinger',                               ''),
+('The Stars',                                   '',                         1865,               'Society for the Diffusion of Useful Knowledge',    'Society_for_the_Diffusion_of_Useful_Knowledge'),
+('Atlas of Astronomy',                          '',                         1869,               'Alexander Keith Johnston',                         'Alexander_Keith_Johnston_(1844–1879)');
 
 INSERT INTO `Map`
 (`map_name`,    `description`,                                                                                                              `atlas_id`)
