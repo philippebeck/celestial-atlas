@@ -25,7 +25,7 @@
                         <label for="atlas_id">Atlas</label>
                         <select id="atlas_id" name="atlas_id">
                             {% for atlas in atlases %}
-                            <option value="{{ atlas.id }}" title="Made by {{ atlas.author_name }}">{{ atlas.year }} : {{ atlas.atlas_name }}</option>
+                            <option value="{{ atlas.id }}" title="Made by {{ atlas.author_name }}">{{ atlas.published_year|trim('0', 'left') }} : {{ atlas.atlas_name }}</option>
                             {% endfor %}
                         </select>
                     </li>
