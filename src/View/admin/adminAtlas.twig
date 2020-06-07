@@ -20,10 +20,10 @@
                            href="https://en.wikipedia.org/wiki/{{ atlas.atlas_wiki }}"
                            rel="noreferrer noopener" target="_blank"
                            title="Wikipedia Atlas Page">
-                            {{ atlas.atlas_name }}
+                            {{ atlas.atlas_name }} ({{ atlas.published_year|trim('0', 'left') }})
                         </a>
                     {% else %}
-                        {{ atlas.atlas_name }}
+                        {{ atlas.atlas_name }} ({{ atlas.published_year|trim('0', 'left') }})
                     {% endif %}
                 </td>
                 <td>
