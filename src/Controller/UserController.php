@@ -91,6 +91,7 @@ class UserController extends BaseController
             }
 
             ModelFactory::getModel("User")->createData($user);
+            $this->globals->getSession()->createSession($user);
             $this->globals->getSession()->createAlert("New user successfully created !", "green");
 
             $this->redirect("admin");
@@ -142,6 +143,7 @@ class UserController extends BaseController
             }
 
             ModelFactory::getModel("User")->updateData($this->globals->getGet()->getGetVar("id"), $this->user);
+            $this->globals->getSession()->createSession($this->user);
             $this->globals->getSession()->createAlert("Successful modification of the user !", "blue");
 
             $this->redirect("admin");
