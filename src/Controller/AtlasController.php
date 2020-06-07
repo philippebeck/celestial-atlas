@@ -47,8 +47,12 @@ class AtlasController extends BaseController
         $this->checkAdminAccess();
 
         if (!empty($this->globals->getPost()->getPostArray())) {
+            $atlasPost  = $this->globals->getPost()->getPostArray();
 
-            ModelFactory::getModel("Atlas")->createData($this->globals->getPost()->getPostArray());
+            $atlasPost["atlas_wiki"]    = substr($atlasPost["atlas_wiki"], 30);
+            $atlasPost["author_wiki"]   = substr($atlasPost["author_wiki"], 30);
+
+            ModelFactory::getModel("Atlas")->createData($atlasPost);
             $this->globals->getSession()->createAlert("New atlas successfully created !", "green");
 
             $this->redirect("map!create");
@@ -82,7 +86,12 @@ class AtlasController extends BaseController
         $this->checkAdminAccess();
 
         if (!empty($this->globals->getPost()->getPostArray())) {
-            ModelFactory::getModel("Atlas")->updateData($this->globals->getGet()->getGetVar("id"), $this->globals->getPost()->getPostArray());
+            $atlasPost  = $this->globals->getPost()->getPostArray();
+
+            $atlasPost["atlas_wiki"]    = substr($atlasPost["atlas_wiki"], 30);
+            $atlasPost["author_wiki"]   = substr($atlasPost["author_wiki"], 30);
+
+            ModelFactory::getModel("Atlas")->updateData($this->globals->getGet()->getGetVar("id"), $atlasPost);
             $this->globals->getSession()->createAlert("Successful modification of the selected atlas !", "blue");
 
             $this->redirect("admin");
