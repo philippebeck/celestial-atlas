@@ -27,7 +27,7 @@
         </nav>
 
         <article class="menu-relay">
-            <header class="menu-target1">
+            <header class="menu-target1 mar-bot-lg">
                 <h2>IAU & Eugène Delporte</h2>
 
                 <p>
@@ -65,8 +65,15 @@
                 </p>
 
                 <figure>
-                    <img class="bord-navy bord-curve bord-sm" src="img/delporte.png" alt="QR Code of the Book">
-                    <figcaption>Délimitation Scientifique des Constellations</figcaption>
+                    <img class="bord-navy bord-curve bord-sm" src="img/delporte.png" alt="QR Code of the Book" title="Use a QR Code reader with your Smartphone to Go to the Book !">
+                    <figcaption>
+                        <a href="https://books.google.fr/books?id=v3XvAAAAMAAJ"
+                           class="button-navy"
+                           rel="noreferrer noopener" target="_blank"
+                           title="Clic to Go to the Book">
+                            Délimitation Scientifique des Constellations
+                        </a>
+                    </figcaption>
                 </figure>
             </header>
 
@@ -82,7 +89,7 @@
                 <ul class="fluid-2sm-3lg-4wd">
                     {% for constellation in constellations %}
                         <li>
-                            <a href="{{ url('constellation!read', {'id': constellation.id}) }}" title="Clic to Watch">
+                            <a class="cursor-cross" href="{{ url('constellation!read', {'id': constellation.id}) }}" title="Clic to Watch">
                                 <figure class="button-navy">
                                     <img src="img/thumbnails/tn_{{ constellation.name }}.jpg"
                                          alt="Chart of {{ constellation.name }}">
@@ -96,7 +103,7 @@
                 </ul>
             </section>
 
-            <footer class="menu-target3">
+            <footer class="menu-target3 mar-bot-lg">
                 <h4>License</h4>
 
                 <p>
