@@ -62,7 +62,9 @@ class MapController extends BaseController
             $this->redirect("map!create");
         }
 
-        return $this->render("map/createMap.twig");
+        $atlases = ModelFactory::getModel("Atlas")->listData();
+
+        return $this->render("map/createMap.twig", ["atlases" => $atlases]);
     }
 
     /**
@@ -92,9 +94,13 @@ class MapController extends BaseController
             $this->redirect("admin");
         }
 
-        $map = ModelFactory::getModel("Map")->readData($this->globals->getGet()->getGetVar("id"));
+        $atlases    = ModelFactory::getModel("Atlas")->listData();
+        $map        = ModelFactory::getModel("Map")->readData($this->globals->getGet()->getGetVar("id"));
 
-        return $this->render("map/updateMap.twig", ["map" => $map]);
+        return $this->render("map/updateMap.twig", [
+            "atlases"   => $atlases,
+            "map"       => $map
+            ]);
     }
 
     public function deleteMethod()

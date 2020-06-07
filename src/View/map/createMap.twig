@@ -22,10 +22,13 @@
                         <textarea id="description" name="description" rows="3" maxlength="120" required placeholder="Map Description"></textarea>
                     </li>
                     <li>
-                        <label for="atlas_id">Atlas Id</label>
-                        <input id="atlas_id" name="atlas_id" type="number" max="255" required>
+                        <label for="atlas_id">Atlas</label>
+                        <select id="atlas_id" name="atlas_id">
+                            {% for atlas in atlases %}
+                            <option value="{{ atlas.id }}" title="Made by {{ atlas.author_name }}">{{ atlas.year }} : {{ atlas.atlas_name }}</option>
+                            {% endfor %}
+                        </select>
                     </li>
-
                 </ul>
                 <ul>
                     <li>
