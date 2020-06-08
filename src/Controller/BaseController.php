@@ -18,15 +18,4 @@ class BaseController extends MainController
             $this->redirect("user");
         }
     }
-
-    /**
-     * @param string $img
-     * @param string $src
-     * @param string $dest
-     * @param int $width
-     */
-    public function makeThumbnail(string $img, string $src, string $dest, int $width = 300)
-    {
-        imagejpeg(imagescale(imagecreatefromjpeg($src . $img), $width), $dest . $img);
-    }
 }
