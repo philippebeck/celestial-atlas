@@ -67,6 +67,18 @@ class UserController extends BaseController
         $this->redirect("home");
     }
 
+    private function setUserData()
+    {
+        $this->user["name"]     = $this->globals->getPost()->getPostVar("name");
+        $this->user["email"]    = $this->globals->getPost()->getPostVar("email");
+    }
+
+    private function setUserImage()
+    {
+        $this->user["image"] = $this->globals->getFiles()->uploadFile("img/user/", $this->user["name"]);
+        $this->globals->getFiles()->makeThumbnail("img/user/" . $this->user["image"], 150);
+    }
+
     /**
      * @return string
      * @throws LoaderError
@@ -78,11 +90,8 @@ class UserController extends BaseController
         $this->checkAdminAccess();
 
         if (!empty($this->globals->getPost()->getPostArray())) {
-            $user["image"] = $this->globals->getFiles()->uploadFile("img/user");
-            $this->makeThumbnail($user["image"], "img/user/", "img/user/", 150);
-
-            $user["name"]   = $this->globals->getPost()->getPostVar("name");
-            $user["email"]  = $this->globals->getPost()->getPostVar("email");
+            $this->setUserData();
+            $this->setUserImage();
 
             if ($this->globals->getPost()->getPostVar("pass") !== $this->globals->getPost()->getPostVar("conf-pass")) {
                 $this->globals->getSession()->createAlert("Passwords do not match !", "red");
@@ -90,8 +99,7 @@ class UserController extends BaseController
                 $this->redirect("user!create");
             }
 
-            ModelFactory::getModel("User")->createData($user);
-            $this->globals->getSession()->createSession($user);
+            ModelFactory::getModel("User")->createData($this->user);
             $this->globals->getSession()->createAlert("New user successfully created !", "green");
 
             $this->redirect("admin");
@@ -130,12 +138,10 @@ class UserController extends BaseController
         $this->checkAdminAccess();
 
         if (!empty($this->globals->getPost()->getPostArray())) {
-            $this->user["name"]     = $this->globals->getPost()->getPostVar("name");
-            $this->user["email"]    = $this->globals->getPost()->getPostVar("email");
+            $this->setUserData();
 
             if (!empty($this->globals->getFiles()->getFileVar("name"))) {
-                $this->user["image"] = $this->globals->getFiles()->uploadFile("img/user");
-                $this->makeThumbnail($this->user["image"], "img/user/", "img/user/", 150);
+                $this->setUserImage();
             }
 
             if (!empty($this->globals->getPost()->getPostVar("old-pass"))) {
