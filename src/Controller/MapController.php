@@ -12,7 +12,7 @@ use Twig\Error\SyntaxError;
  * Class MapController
  * @package App\Controller
  */
-class MapController extends BaseController
+class MapController extends MainController
 {
     /**
      * @var array

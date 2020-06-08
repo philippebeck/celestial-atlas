@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Pam\Controller\MainController;
 use Pam\Model\Factory\ModelFactory;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -11,7 +12,7 @@ use Twig\Error\SyntaxError;
  * Class AtlasController
  * @package App\Controller
  */
-class AtlasController extends BaseController
+class AtlasController extends MainController
 {
     /**
      * @return string
