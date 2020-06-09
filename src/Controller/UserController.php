@@ -152,7 +152,6 @@ class UserController extends MainController
             }
 
             ModelFactory::getModel("User")->updateData($this->globals->getGet()->getGetVar("id"), $this->user);
-            $this->globals->getSession()->createSession($this->user);
             $this->globals->getSession()->createAlert("Successful modification of the user !", "blue");
 
             $this->redirect("admin");
