@@ -76,7 +76,9 @@ class UserController extends MainController
 
     private function setUserImage()
     {
-        $this->user["image"] = $this->globals->getFiles()->uploadFile("img/user/", $this->user["name"]);
+        $this->user["image"] = $this->cleanString($this->user["name"]) . $this->globals->getFiles()->setFileExtension();
+
+        $this->globals->getFiles()->uploadFile("img/user/", $this->cleanString($this->user["name"]));
         $this->globals->getFiles()->makeThumbnail("img/user/" . $this->user["image"], 150);
     }
 
