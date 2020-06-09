@@ -102,6 +102,8 @@ class UserController extends MainController
                 $this->redirect("user!create");
             }
 
+            $this->user["pass"] = password_hash($this->globals->getPost()->getPostVar("pass"), PASSWORD_DEFAULT);
+
             ModelFactory::getModel("User")->createData($this->user);
             $this->globals->getSession()->createAlert("New user successfully created !", "green");
 
