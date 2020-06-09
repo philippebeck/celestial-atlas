@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Pam\Controller\MainController;
 use Pam\Model\Factory\ModelFactory;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -11,7 +12,7 @@ use Twig\Error\SyntaxError;
  * Class ConstellationController
  * @package App\Controller
  */
-class ConstellationController extends BaseController
+class ConstellationController extends MainController
 {
     /**
      * @return string
@@ -49,24 +50,25 @@ class ConstellationController extends BaseController
     {
         $this->checkAdminAccess();
 
+        $constellation = ModelFactory::getModel("Constellation")->readData($this->globals->getGet()->getGetVar("id"));
+
         if (!empty($this->globals->getPost()->getPostArray())) {
+            $data["description"] = $this->globals->getPost()->getPostVar("description");
 
             if (!empty($this->globals->getFiles()->getFileVar("name"))) {
-                $img = $this->globals->getFiles()->uploadFile("img/constellation");
+                $this->globals->getFiles()->uploadFile("img/constellation/", $constellation["name"]);
 
-                $this->makeThumbnail($img, "img/constellation/", "img/thumbnails/tn_");
-                $data["name"] = trim($img, ".jpg");
+                $img        = "img/constellation/" . $constellation["name"] . $this->globals->getFiles()->setFileExtension();
+                $thumbnail  = "img/thumbnails/tn_" . $constellation["name"] . $this->globals->getFiles()->setFileExtension();
+
+                $this->globals->getFiles()->makeThumbnail($img, 300, $thumbnail);
             }
-
-            $data["description"] = $this->globals->getPost()->getPostVar("description");
 
             ModelFactory::getModel("Constellation")->updateData($this->globals->getGet()->getGetVar("id"), $data);
             $this->globals->getSession()->createAlert("Successful modification of the selected constellation !", "blue");
 
             $this->redirect("admin");
         }
-
-        $constellation = ModelFactory::getModel("Constellation")->readData($this->globals->getGet()->getGetVar("id"));
 
         return $this->render("constellation/updateConstellation.twig", ["constellation" => $constellation]);
     }

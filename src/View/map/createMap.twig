@@ -6,7 +6,7 @@
 
 {% block main %}
     <main class="align-center">
-        <form class="form" method="post" action={{ url('map!create') }}>
+        <form class="form" method="post" action={{ url('map!create') }} enctype="multipart/form-data">
             <input type="hidden" name="MAX_FILE_SIZE" value="50000000">
             <fieldset>
                 <legend>

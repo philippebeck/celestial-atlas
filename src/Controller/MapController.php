@@ -12,7 +12,7 @@ use Twig\Error\SyntaxError;
  * Class MapController
  * @package App\Controller
  */
-class MapController extends BaseController
+class MapController extends MainController
 {
     /**
      * @var array
@@ -32,7 +32,7 @@ class MapController extends BaseController
         return $this->render("map/maps.twig", ["maps" => $maps]);
     }
 
-    private function getMapPost()
+    private function setMapData()
     {
         $this->data["description"]  = $this->globals->getPost()->getPostVar("description");
         $this->data["atlas_id"]     = $this->globals->getPost()->getPostVar("atlas_id");
@@ -44,7 +44,7 @@ class MapController extends BaseController
         $mapCount   = 0;
 
         foreach ($maps as $map) {
-            if ($map["atlas_id"] === $this->globals->getPost()->getPostVar("atlas_id")) {
+            if ($map["atlas_id"] === $this->data["atlas_id"]) {
 
                 preg_match_all('/[A-Z]/', $map["author_name"], $authorInitials);
                 $authorInitials = strtolower(implode($authorInitials[0]));
@@ -61,6 +61,16 @@ class MapController extends BaseController
         }
     }
 
+    private function setMapImage()
+    {
+        $this->globals->getFiles()->uploadFile("img/atlas/", $this->data["map_name"]);
+
+        $img        = "img/atlas/" . $this->data["map_name"] . $this->globals->getFiles()->setFileExtension();
+        $thumbnail  = "img/thumbnails/tn_". $this->data["map_name"] . $this->globals->getFiles()->setFileExtension();
+
+        $this->globals->getFiles()->makeThumbnail($img, 300, $thumbnail);
+    }
+
     /**
      * @return string
      * @throws LoaderError
@@ -72,14 +82,9 @@ class MapController extends BaseController
         $this->checkAdminAccess();
 
         if (!empty($this->globals->getPost()->getPostArray())) {
-
-            if (!empty($this->globals->getFiles()->getFileVar("name"))) {
-                $img = $this->globals->getFiles()->uploadFile("img/atlas");
-                $this->makeThumbnail($img, "img/atlas/", "img/thumbnails/tn_");
-            }
-
-            $this->getMapPost();
+            $this->setMapData();
             $this->setMapName();
+            $this->setMapImage();
 
             ModelFactory::getModel("Map")->createData($this->data);
             $this->globals->getSession()->createAlert("New map created successfully !", "green");
@@ -102,14 +107,15 @@ class MapController extends BaseController
     {
         $this->checkAdminAccess();
 
+        $map = ModelFactory::getModel("Map")->readData($this->globals->getGet()->getGetVar("id"));
+
         if (!empty($this->globals->getPost()->getPostArray())) {
+            $this->setMapData();
 
             if (!empty($this->globals->getFiles()->getFileVar("name"))) {
-                $img = $this->globals->getFiles()->uploadFile("img/atlas");
-                $this->makeThumbnail($img, "img/atlas/", "img/thumbnails/tn_");
+                $this->data["map_name"] = $map["map_name"];
+                $this->setMapImage();
             }
-
-            $this->getMapPost();
 
             ModelFactory::getModel("Map")->updateData($this->globals->getGet()->getGetVar("id"), $this->data);
             $this->globals->getSession()->createAlert("Successful modification of the selected map !", "blue");
@@ -117,8 +123,7 @@ class MapController extends BaseController
             $this->redirect("admin");
         }
 
-        $atlases    = ModelFactory::getModel("Atlas")->listData();
-        $map        = ModelFactory::getModel("Map")->readData($this->globals->getGet()->getGetVar("id"));
+        $atlases = ModelFactory::getModel("Atlas")->listData();
 
         return $this->render("map/updateMap.twig", [
             "atlases"   => $atlases,

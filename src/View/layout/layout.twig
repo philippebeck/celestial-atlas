@@ -41,7 +41,7 @@
 
     <header class="pad-top-sm">
         {% if (hasAlert()) %}
-            <p id="alert" class="bg-{{ getAlertType() }} color-white">{{ getAlertMessage() }}</p>
+            <p id="alert" class="container width-md bg-{{ getAlertType() }} color-white bord-sm bord-curve bord-white anima-slideB anima-md anima-bezier anima-altrev">{{ getAlertMessage() }}</p>
         {% endif %}
 
         <h1>{{ block('title') }}</h1>
