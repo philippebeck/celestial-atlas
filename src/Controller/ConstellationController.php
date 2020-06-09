@@ -56,8 +56,12 @@ class ConstellationController extends MainController
             $data["description"] = $this->globals->getPost()->getPostVar("description");
 
             if (!empty($this->globals->getFiles()->getFileVar("name"))) {
-                $img = $this->globals->getFiles()->uploadFile("img/constellation/", $constellation["name"]);
-                $this->globals->getFiles()->makeThumbnail("img/constellation/" . $img, 300, "img/thumbnails/tn_" . $img);
+                $this->globals->getFiles()->uploadFile("img/constellation/", $constellation["name"]);
+
+                $img        = "img/constellation/" . $constellation["name"] . $this->globals->getFiles()->setFileExtension();
+                $thumbnail  = "img/thumbnails/tn_" . $constellation["name"] . $this->globals->getFiles()->setFileExtension();
+
+                $this->globals->getFiles()->makeThumbnail($img, 300, $thumbnail);
             }
 
             ModelFactory::getModel("Constellation")->updateData($this->globals->getGet()->getGetVar("id"), $data);
