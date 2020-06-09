@@ -63,8 +63,12 @@ class MapController extends MainController
 
     private function setMapImage()
     {
-        $img = $this->globals->getFiles()->uploadFile("img/atlas/", $this->data["map_name"]);
-        $this->globals->getFiles()->makeThumbnail("img/atlas/" . $img, 300, "img/thumbnails/tn_". $img);
+        $this->globals->getFiles()->uploadFile("img/atlas/", $this->data["map_name"]);
+
+        $img        = "img/atlas/" . $this->data["map_name"] . $this->globals->getFiles()->setFileExtension();
+        $thumbnail  = "img/thumbnails/tn_". $this->data["map_name"] . $this->globals->getFiles()->setFileExtension();
+
+        $this->globals->getFiles()->makeThumbnail($img, 300, $thumbnail);
     }
 
     /**
@@ -109,6 +113,7 @@ class MapController extends MainController
             $this->setMapData();
 
             if (!empty($this->globals->getFiles()->getFileVar("name"))) {
+                $this->data["map_name"] = $map["map_name"];
                 $this->setMapImage();
             }
 
