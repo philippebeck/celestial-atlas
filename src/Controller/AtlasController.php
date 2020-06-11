@@ -41,6 +41,12 @@ class AtlasController extends MainController
         ]);
     }
 
+    private function setAtlasWiki()
+    {
+        $this->atlas["atlas_wiki"]  = str_replace("https://en.wikipedia.org/wiki/", "", $this->atlas["atlas_wiki"]);
+        $this->atlas["author_wiki"] = str_replace("https://en.wikipedia.org/wiki/", "", $this->atlas["author_wiki"]);
+    }
+
     /**
      * @return string
      * @throws LoaderError
