@@ -15,6 +15,11 @@ use Twig\Error\SyntaxError;
 class AtlasController extends MainController
 {
     /**
+     * @var array
+     */
+    private $atlas = [];
+
+    /**
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
