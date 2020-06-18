@@ -34,8 +34,8 @@ class MapController extends MainController
 
     private function setMapData()
     {
-        $this->data["description"]  = $this->globals->getPost()->getPostVar("description");
-        $this->data["atlas_id"]     = $this->globals->getPost()->getPostVar("atlas_id");
+        $this->data["description"]  = $this->getPost()->getPostVar("description");
+        $this->data["atlas_id"]     = $this->getPost()->getPostVar("atlas_id");
     }
 
     private function setMapName()
@@ -63,12 +63,12 @@ class MapController extends MainController
 
     private function setMapImage()
     {
-        $this->globals->getFiles()->uploadFile("img/atlas/", $this->data["map_name"]);
+        $this->getFiles()->uploadFile("img/atlas/", $this->data["map_name"]);
 
-        $img        = "img/atlas/" . $this->data["map_name"] . $this->globals->getFiles()->setFileExtension();
-        $thumbnail  = "img/thumbnails/tn_". $this->data["map_name"] . $this->globals->getFiles()->setFileExtension();
+        $img        = "img/atlas/" . $this->data["map_name"] . $this->getFiles()->setFileExtension();
+        $thumbnail  = "img/thumbnails/tn_". $this->data["map_name"] . $this->getFiles()->setFileExtension();
 
-        $this->globals->getFiles()->makeThumbnail($img, 300, $thumbnail);
+        $this->service->getImage()->makeThumbnail($img, 300, $thumbnail);
     }
 
     /**
@@ -79,15 +79,15 @@ class MapController extends MainController
      */
     public function createMethod()
     {
-        $this->checkAdminAccess();
+        $this->service->getSecurity()->checkAdminAccess();
 
-        if (!empty($this->globals->getPost()->getPostArray())) {
+        if (!empty($this->getPost()->getPostArray())) {
             $this->setMapData();
             $this->setMapName();
             $this->setMapImage();
 
             ModelFactory::getModel("Map")->createData($this->data);
-            $this->globals->getSession()->createAlert("New map created successfully !", "green");
+            $this->getSession()->createAlert("New map created successfully !", "green");
 
             $this->redirect("admin");
         }
@@ -105,20 +105,20 @@ class MapController extends MainController
      */
     public function updateMethod()
     {
-        $this->checkAdminAccess();
+        $this->service->getSecurity()->checkAdminAccess();
 
-        $map = ModelFactory::getModel("Map")->readData($this->globals->getGet()->getGetVar("id"));
+        $map = ModelFactory::getModel("Map")->readData($this->getGet()->getGetVar("id"));
 
-        if (!empty($this->globals->getPost()->getPostArray())) {
+        if (!empty($this->getPost()->getPostArray())) {
             $this->setMapData();
 
-            if (!empty($this->globals->getFiles()->getFileVar("name"))) {
+            if (!empty($this->getFiles()->getFileVar("name"))) {
                 $this->data["map_name"] = $map["map_name"];
                 $this->setMapImage();
             }
 
-            ModelFactory::getModel("Map")->updateData($this->globals->getGet()->getGetVar("id"), $this->data);
-            $this->globals->getSession()->createAlert("Successful modification of the selected map !", "blue");
+            ModelFactory::getModel("Map")->updateData($this->getGet()->getGetVar("id"), $this->data);
+            $this->getSession()->createAlert("Successful modification of the selected map !", "blue");
 
             $this->redirect("admin");
         }
@@ -133,10 +133,10 @@ class MapController extends MainController
 
     public function deleteMethod()
     {
-        $this->checkAdminAccess();
+        $this->service->getSecurity()->checkAdminAccess();
 
-        ModelFactory::getModel("Map")->deleteData($this->globals->getGet()->getGetVar("id"));
-        $this->globals->getSession()->createAlert("Map actually deleted !", "red");
+        ModelFactory::getModel("Map")->deleteData($this->getGet()->getGetVar("id"));
+        $this->getSession()->createAlert("Map actually deleted !", "red");
 
         $this->redirect("admin");
     }

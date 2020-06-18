@@ -55,15 +55,15 @@ class AtlasController extends MainController
      */
     public function createMethod()
     {
-        $this->checkAdminAccess();
+        $this->service->getSecurity()->checkAdminAccess();
 
-        if (!empty($this->globals->getPost()->getPostArray())) {
-            $this->atlas = $this->globals->getPost()->getPostArray();
+        if (!empty($this->getPost()->getPostArray())) {
+            $this->atlas = $this->getPost()->getPostArray();
 
             $this->setAtlasWiki();
 
             ModelFactory::getModel("Atlas")->createData($this->atlas);
-            $this->globals->getSession()->createAlert("New atlas successfully created !", "green");
+            $this->getSession()->createAlert("New atlas successfully created !", "green");
 
             $this->redirect("map!create");
         }
@@ -79,8 +79,8 @@ class AtlasController extends MainController
      */
     public function readMethod()
     {
-        $atlas      = ModelFactory::getModel("Atlas")->readData($this->globals->getGet()->getGetVar("id"));
-        $atlasMaps  = ModelFactory::getModel("Map")->listData($this->globals->getGet()->getGetVar("id"), "atlas_id");
+        $atlas      = ModelFactory::getModel("Atlas")->readData($this->getGet()->getGetVar("id"));
+        $atlasMaps  = ModelFactory::getModel("Map")->listData($this->getGet()->getGetVar("id"), "atlas_id");
 
         return $this->render("atlas/atlasMaps.twig", ["atlas" => $atlas, "atlasMaps"  => $atlasMaps]);
     }
@@ -93,36 +93,36 @@ class AtlasController extends MainController
      */
     public function updateMethod()
     {
-        $this->checkAdminAccess();
+        $this->service->getSecurity()->checkAdminAccess();
 
-        if (!empty($this->globals->getPost()->getPostArray())) {
-            $this->atlas  = $this->globals->getPost()->getPostArray();
+        if (!empty($this->getPost()->getPostArray())) {
+            $this->atlas  = $this->getPost()->getPostArray();
 
             $this->setAtlasWiki();
 
-            ModelFactory::getModel("Atlas")->updateData($this->globals->getGet()->getGetVar("id"), $this->atlas);
-            $this->globals->getSession()->createAlert("Successful modification of the selected atlas !", "blue");
+            ModelFactory::getModel("Atlas")->updateData($this->getGet()->getGetVar("id"), $this->atlas);
+            $this->getSession()->createAlert("Successful modification of the selected atlas !", "blue");
 
             $this->redirect("admin");
         }
 
-        $atlas = ModelFactory::getModel("Atlas")->readData($this->globals->getGet()->getGetVar("id"));
+        $atlas = ModelFactory::getModel("Atlas")->readData($this->getGet()->getGetVar("id"));
 
         return $this->render("atlas/updateAtlas.twig", ["atlas" => $atlas]);
     }
 
     public function deleteMethod()
     {
-        $this->checkAdminAccess();
+        $this->service->getSecurity()->checkAdminAccess();
 
-        $maps = ModelFactory::getModel("Map")->listData($this->globals->getGet()->getGetVar("id"), "atlas_id");
+        $maps = ModelFactory::getModel("Map")->listData($this->getGet()->getGetVar("id"), "atlas_id");
 
         foreach ($maps as $map) {
             ModelFactory::getModel("Map")->deleteData($map["id"]);
         }
 
-        ModelFactory::getModel("Atlas")->deleteData($this->globals->getGet()->getGetVar("id"));
-        $this->globals->getSession()->createAlert("Atlas permanently deleted !", "red");
+        ModelFactory::getModel("Atlas")->deleteData($this->getGet()->getGetVar("id"));
+        $this->getSession()->createAlert("Atlas permanently deleted !", "red");
 
         $this->redirect("admin");
 
