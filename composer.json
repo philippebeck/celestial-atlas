@@ -1,6 +1,6 @@
 {
   "name": "philippebeck/celestial-atlas",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "type": "project",
   "description": "Celestial Atlas from Middle-Age to the 19th Century",
   "keywords": [
@@ -9,6 +9,7 @@
     "php",
     "mvc"
   ],
+  "homepage": "https://celestial-atlas.philippebeck.net",
   "license": "MIT",
   "authors": [
     {
@@ -27,7 +28,9 @@
     "php": "7.3",
     "philippebeck/pam": "^4.0.0",
     "ext-gd": "*",
-    "ext-exif": "*"
+    "ext-exif": "*",
+    "ext-curl": "*",
+    "ext-json": "*"
   },
   "require-dev": {
     "tracy/tracy": "^2.7.5"
