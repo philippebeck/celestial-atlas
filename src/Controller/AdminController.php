@@ -22,7 +22,7 @@ class AdminController extends MainController
      */
     public function defaultMethod()
     {
-        $this->checkAdminAccess();
+        $this->service->getSecurity()->checkAdminAccess();
 
         $constellations = ModelFactory::getModel("Constellation")->listData();
         $atlases        = ModelFactory::getModel("Atlas")->listData();
