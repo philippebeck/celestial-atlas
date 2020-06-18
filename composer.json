@@ -25,7 +25,7 @@
   },
   "require": {
     "php": "7.3",
-    "philippebeck/pam": "^3.3.1",
+    "philippebeck/pam": "^4.1.0",
     "ext-gd": "*",
     "ext-exif": "*"
   },
