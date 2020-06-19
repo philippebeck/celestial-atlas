@@ -13,7 +13,7 @@
   "repository": "github:philippebeck/celestial-atlas",
   "bugs": "https://github.com/philippebeck/celestial-atlas/issues",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@fortawesome/fontawesome-free": "^5.13.1",
     "animadio": "^2.4.4"
   },
   "author": {
