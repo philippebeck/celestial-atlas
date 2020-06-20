@@ -48,7 +48,9 @@ class ConstellationController extends MainController
      */
     public function updateMethod()
     {
-        $this->service->getSecurity()->checkAdminAccess();
+        if ($this->service->getSecurity()->checkIsAdmin() !== true) {
+            $this->redirect("home");
+        }
 
         $constellation = ModelFactory::getModel("Constellation")->readData($this->getGet()->getGetVar("id"));
 
