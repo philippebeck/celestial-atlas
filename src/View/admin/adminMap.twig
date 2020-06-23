@@ -15,14 +15,7 @@
         {% for map in maps %}
             <tr>
                 <td>
-                    <a href="img/atlas/{{ map.map_name}}.jpg" title="Clic to Watch">
-                        <figure>
-                            <img class="bord-green"
-                                 src="img/thumbnails/tn_{{ map.map_name }}.jpg"
-                                 alt="Screenshot of the map {{ map.map_name }}">
-                            <figcaption>{{ map.map_name }}</figcaption>
-                        </figure>
-                    </a>
+                    <a class="button-navy" href="img/atlas/{{ map.map_name}}.jpg" title="Clic to Watch the Map">{{ map.map_name }}</a>
                 </td>
                 <td>
                     <a class="button-purple"
